@@ -1,3 +1,4 @@
+# Personal Note For Python
 # Python Part A
 
 
