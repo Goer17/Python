@@ -823,12 +823,17 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 
 ## 类和对象
 
+
+
 ### 类
+
+#### 基本概念和语法
 
 - 类的三要素：
   - **类名（类的命名最好采用大驼峰命名法）**
   - **属性**
   - **方法**
+  
 - 类的定义：
 
   ```python
@@ -877,6 +882,29 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
           self.age += 1;
   ```
 
+
+
+
+#### 定义私有属性和私有方法
+
+- 在属性或方法前加上 "__" 就是私有属性或私有方法；
+
+  ```python
+  self.__var = val; #私有属性只能在类内访问
+  
+  def __fun(self, var, ...):
+      #私有方法
+  ```
+
+- 私有属性或方法的调用：
+
+  ```python
+  obj._ClassName__var;
+  obj._ClassName__fun();
+  ```
+
+  > 因此在 Python 中没有绝对的私有
+
   
 
 ### 对象
@@ -912,4 +940,47 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
   obj.name = "clara"; #直接给obj添加了一个name的属性
   ```
 
+
+### 继承
+
+#### 单继承
+
+- 语法：
+
+  ```python
+  class son(father):
+      #子类会继承父类的属性和方法
+  ```
+
+  > 也称 son 类称为 father 类的派生类，father 类为 son 类的基类
+
+- 继承时方法的重写：
+
+  > 当父类的方法不能满足子类的需求时，可以对其方法进行**重写（override）**；
+  >
+  > 若子类方法与父类方法同名，则会覆盖父类方法。
+
+  eg:
+
+  ```python
+  class father:
+      def fun(self, var, ...):
+          #父类的方法
+      
+  class son(father):
+      def fun(self, var, ...):
+          #子类的fun方法会覆盖父类的fun方法
+  ```
+
+  > 若要调用父类的方法，则采用 super 类实现：
+
+  ```python
+  obj = son();
+  obj.fun(); #调用子类的fun方法
+  super().fun(); #子类内调用父类的fun方法
+  ```
+
   
+
+### 多态
+
