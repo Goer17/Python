@@ -1,4 +1,7 @@
 # Personal Note For Python
+
+<img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/starry_sky.png" alt="starry_sky" style="zoom:50%;" />
+
 # Python Part A
 
 
@@ -814,3 +817,99 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 
 # Python Part B
 
+- **面向对象编程 —— Object Oriented Programming（OOP）**
+
+
+
+## 类和对象
+
+### 类
+
+- 类的三要素：
+  - **类名（类的命名最好采用大驼峰命名法）**
+  - **属性**
+  - **方法**
+- 类的定义：
+
+  ```python
+  class NameClass:
+      
+      def __init__(self, var, ...):
+          #初始化方法
+          self.var_1 = val_1;
+          self.var_2 = val_2;
+          #设定初始属性
+          #...
+          
+      def __del__(self):
+          #销毁方法
+          
+      def __str__(self):
+          #自定义print输出方法
+          #...
+          return stringEnd; #返回格式化字符串
+      
+      def fun_1(self, var, ...):
+          #方法1
+          
+      def fun_2(self, var, ...):
+          #方法2
+  ```
+
+  eg:
+
+  ```python
+  class Person:
+      
+      def __init__(self, _name, _gender, _age):
+          self.name = _name;
+          self.gender = _gender;
+          self.age = _age;
+          print("%s来了" % self.name);
+      
+      def __del__(self):
+          print("%s去了" % self.name);
+          
+      def __str__(self):
+          return "我是%s" % self.name;
+      
+      def grow(self):
+          self.age += 1;
+  ```
+
+  
+
+### 对象
+
+- 对象的创建：
+
+  ```python
+  obj = NameClass(); #无参构造
+  obj = NameClass(var_1, var_2, ...); #有参构造
+  ```
+
+  > 对象的创建依然是引用，但是同种创建方式创建的多个对象依然会分配相应多份内存
+
+  ```python
+  class test:
+      def func(self):
+          pass;
+  
+  obj_1 = test();
+  obj_2 = test();
+  print(id(obj_1), ' ', id(obj_2));
+  ```
+
+  > out:
+  >
+  > 2974684409104   2974684409056
+
+- Python 可以直接在类外给对象添加属性；
+
+  eg:
+
+  ```python
+  obj.name = "clara"; #直接给obj添加了一个name的属性
+  ```
+
+  
