@@ -2,7 +2,7 @@
 
 <img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/starry_sky.png" alt="starry_sky" style="zoom:50%;" />
 
-# Python Part A
+# Part A
 
 
 
@@ -96,7 +96,7 @@ eg:
      $ exit()
      ```
 
-     对于ipython解释器则是直接输入exit：
+     对于 ipython 解释器则是直接输入exit：
 
      ```cmd
      $ exit
@@ -780,7 +780,7 @@ def sum_nums(*args):
 
 
 
-### Python中的其他一些函数
+### Python中的常用模块与函数
 
 #### Python中的随机数
 
@@ -815,7 +815,7 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 
 
 
-# Python Part B
+# Part B
 
 - **面向对象编程 —— Object Oriented Programming（OOP）**
 
@@ -905,7 +905,31 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 
   > 因此在 Python 中没有绝对的私有
 
-  
+
+
+
+#### 实例属性和类属性
+
+- 实例属性：即具体对象的属性，通过初始化方法定义，定义对象的过程叫做实例化，其属性称为实例属性；
+
+- 类属性：某个类的属性，在类内通过直接赋值定义，可以通过 **类名.属性** 的方式调用。
+
+  > 在 Python 中类也是一种特殊的对象，定义类的时候生成，有且仅有一份；
+  >
+  > 可以类比 C++ 中的静态属性。
+
+eg:
+
+```python
+class Person:
+    count = 0; #类属性，记录定义的人数
+    
+    def __init__(self, _name):
+        self.name = _name; #实例属性
+        Person.count += 1; #每初始化一个Person的实例对象类属性count就加一
+```
+
+
 
 ### 对象
 
@@ -980,7 +1004,41 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
   super().fun(); #子类内调用父类的fun方法
   ```
 
-  
+
+
+
+#### 多继承
+
+- 语法：
+
+  ```python
+  class son(father_1, father_2, ...):
+      #子类继承多个父类的属性与方法
+  ```
+
+  > 注意事项：
+  >
+  > 若父类之间存在同名的属性或方法，应该尽量避免使用多继承。 
+
+
 
 ### 多态
+
+- 不同的子类对象调用相同的父类方法，产生不同的结果，称为多态；
+
+- 原理：子类对父类方法的重写；
+
+  ```python
+  class father(object):
+      
+      def fun(self, var, ...):
+          #父类的fun方法
+  
+  class son(father):
+      
+      def fun(self, var, ...):
+          #对父类方法重写
+  ```
+
+  
 
