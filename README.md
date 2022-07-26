@@ -966,6 +966,48 @@ class Person:
   >
   > **类名.方法**
 
+#### new方法
+
+- 使用 类名（）的方式创建对象时，Python 的解释器首先会调用内置的new方法为对象分配空间，其作用有：
+
+  - 在内存中为对象分配空间
+  - 返回对象的引用
+
+- 重写 new 方法：
+
+  ```python
+  class NameClass(object):
+      
+      def __new__(cls, *args, **kwargs):
+      #创建方法时，new方法会被自动调用
+      #执行代码
+      
+      return super().__new__(cls);
+  ```
+
+- 单例设计模式的 new 方法实现：
+
+  > 定义一个类属性 instance ，初始值为None，重写 new 方法：
+
+  <center>
+  <img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/image-20220726112733364.png" alt="image-20220726112733364" style="zoom:67%;" />
+      单例模式__new__方法逻辑图
+  </center>
+  
+  ```python
+  class NameClass:
+      
+      #定义类属性记录单例对象引用
+      instance = None;
+      
+      def __new__(cls, *args, **kwargs):
+          
+          if cls.instance == None:
+              cls.instance = super().__new__(cls);
+          
+          return cls.instance;
+  ```
+
 
 
 ### 对象
