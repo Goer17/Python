@@ -1,3 +1,3 @@
-a = "Hello";
-b = "Hello";
-print(id(a), ' ', id(b));
+import test;
+
+print(test.__file__);

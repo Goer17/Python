@@ -14,9 +14,3 @@ class Person:
     
     def grow(self):
         self.age += 1;
-
-test = Person("张三", "男", 30);
-print(test);
-print(test.age);
-test.grow();
-print(test.age);

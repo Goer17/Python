@@ -707,11 +707,11 @@ else:
 
 
 
-## 函数
+## 函数与模块
 
 
 
-### 函数语法
+### 函数
 
 - 定义函数格式如下：
 
@@ -780,9 +780,91 @@ def sum_nums(*args):
 
 
 
-### Python中的常用模块与函数
+### 模块
 
-#### Python中的随机数
+- 每一个拓展名以 .py 结尾的源代码文件都是一个模块；
+
+- 模块名也是一个标识符，需要符合标识符的命名规则；
+
+- 模块定义的全局变量、函数、类都可以直接提供给外界；
+
+- 模块的导入方式：
+
+  1. import 导入：
+
+     ```python
+     import module_1, module_2;
+     ```
+
+     ```python
+     import module_1;
+     import module_2;
+     ```
+
+     > 使用 as 指定别名
+
+     ```python
+     import module as alias;
+     ```
+
+     > 模块别名最好采用大驼峰命名法
+
+  2. from ... import 导入：
+
+     ```python
+     from module import tool; #使用模块的局部工具
+     ```
+
+     > 局部导入后不需要通过模块名调用工具；
+     >
+     > 如果从两个不同的模块中导入了同名的成员，那么后导入的成员会覆盖掉先导入的成员，若发生冲突，可以采用 as 取别名来解决。
+
+     ```python
+     from module_1 import tool as tool_1;
+     from module_2 import tool as tool_2;
+     ```
+
+     > 一次性导入所有工具：
+
+     ```python
+     from module import *;
+     ```
+
+- 模块搜索顺序：
+
+  1. 当前目录
+
+  2. 系统目录
+
+     > Python 中每一个模块都有一个内置属性 file 可以查看模块的完整路径
+
+     ```python
+     print(module.__file__); #打印模块路径
+     ```
+
+     
+
+
+
+
+
+### Python中的常用函数
+
+#### print() 函数
+
+- 在默认情况下，print() 函数在输出内容后会自动在末尾增加换行；
+
+- 如果不希望末尾自动换行，可以在print() 函数的输出内容后增加：end = ""；
+
+  ```python
+  print("Hello world", end = "");
+  ```
+
+
+
+### Python中的常用模块
+
+#### 随机数模块random
 
 - 导入随机数的模块：
 
@@ -797,18 +879,6 @@ import random;
 ```python
 random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 ```
-
-
-
-#### print() 函数
-
-- 在默认情况下，print() 函数在输出内容后会自动在末尾增加换行；
-
-- 如果不希望末尾自动换行，可以在print() 函数的输出内容后增加：end = ""；
-
-  ```python
-  print("Hello world", end = "");
-  ```
 
 
 
@@ -966,6 +1036,8 @@ class Person:
   >
   > **类名.方法**
 
+
+
 #### new方法
 
 - 使用 类名（）的方式创建对象时，Python 的解释器首先会调用内置的new方法为对象分配空间，其作用有：
@@ -1121,3 +1193,154 @@ class Person:
 
   
 
+## 异常
+
+
+
+### 异常的概念
+
+- 程序在运行时，如果 Python 解释器遇到一个错误，会停止程序的执行，并提示一些错误信息，这就是**异常**；
+- 程序停止执行并且提示错误信息这个动作，我们称为：**抛出（raise）异常**。
+
+
+
+### 异常的捕获
+
+- 在程序开发中，如果某些代码的执行不能确定是否正确，可以增加 try 来捕获异常；
+
+- 语法格式：
+
+  ```python
+  try:
+      #尝试执行的代码
+  
+  except:
+      #出现错误的处理
+  ```
+
+- 根据错误的类型捕获异常：
+
+  ```python
+  try:
+      #尝试执行的代码
+      
+  except error_1:
+      #针对错误类型1的执行代码
+      
+  except (error_2, error_3):
+      #针对错误类型2和类型3的执行代码
+      
+  except Exception as result:
+      # print("未知错误 %s" % result)
+      #针对未知类型的错误的执行代码
+  ```
+
+  > Python 解释器抛出异常时，最后一行错误信息的第一个单词就是错误类型
+
+- 异常捕获的完整语法：
+
+  ```python
+  try:
+      #尝试执行的代码
+      
+  except error_1:
+      #针对错误类型1的执行代码
+      
+  except (error_2, error_3):
+      #针对错误类型2和类型3的执行代码
+      
+  except Exception as result:
+      # print("未知错误 %s" % result)
+      #针对未知类型的错误的执行代码
+      
+  else:
+      #没有异常的执行代码
+      
+  finally:
+      #无论是否有异常都会执行的代码
+  ```
+
+  eg：
+
+  ```python
+  try:
+      num = int(input("请输入非0整数："));
+      result = 1 / num;
+  
+  except ValueError:
+      print("请输入整数");
+  
+  except ZeroDivisionError:
+      print("整数不能为0");
+  
+  except Exception as error_unknow:
+      print("未知错误 %s" % error_unknow);
+  
+  else:
+      print(result);
+  
+  finally:
+      pass;
+  ```
+
+  
+
+### 异常的传递
+
+- 当函数或方法执行出现异常时，会将异常传递给调用一方；
+
+- 如果传递到主程序，仍然没有异常处理，程序才会被终止。
+
+  eg：
+
+  ```python
+  def demo():
+      return int(input("请输入一个整数："));
+  
+  try:
+      print(demo());
+      
+  except ValueError:
+      print("请输入整数");
+      
+  except Exception as error_unknow:
+      print("未知错误 %s" % error_unknow);
+  ```
+
+  
+
+### 主动抛出异常
+
+- 在开发时，如果满足特定业务需求时，希望主动抛出异常，可以：
+
+  1. 创建一个 Exception 的对象；
+  2. 使用 raise 关键词抛出异常对象。
+
+  eg：
+
+  ```python
+  passwordTooShort = Exception("密码长度不够"); #创建异常对象
+  
+  def input_password():
+      """
+      提示用户输入密码
+      密码长度必须 >= 8
+      """
+  
+      pwd = input("请输入密码");
+      if len(pwd) >= 8:
+          return pwd;
+      
+      raise passwordTooShort; #抛出异常对象
+  
+  try:
+      password = input_password();
+  
+  except passwordTooShort:
+      print("密码长度必须 >= 8");
+  
+  except Exception as error_unknow:
+      print("未知错误 %s" % error_unknow);
+  ```
+
+  
