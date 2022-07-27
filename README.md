@@ -1063,8 +1063,10 @@ class Person:
 
   <center>
   <img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/image-20220726112733364.png" alt="image-20220726112733364" style="zoom:67%;" />
+      <br>
       单例模式__new__方法逻辑图
   </center>
+  
   
   ```python
   class NameClass:
