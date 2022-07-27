@@ -1,6 +1,8 @@
 # Personal Note For Python
 
-<img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/starry_sky.png" alt="starry_sky" style="zoom:50%;" />
+<center>
+    <img src="https://typora-1313035735.cos.ap-nanjing.myqcloud.com/img/starry_sky.png" alt="starry_sky" style="zoom:50%;" />
+</center>
 
 # Part A
 
@@ -842,7 +844,43 @@ def sum_nums(*args):
      print(module.__file__); #打印模块路径
      ```
 
-     
+- 在模板导入时，文件内所有没有任何缩进的代码都会被执行一遍；
+
+  > 而一般的开发人员在模块下会有一些测试代码，如何在导入模块时不执行这些代码？
+  >
+  > —— 利用内置属性 name
+  >
+  > 直接执行模块时，name 属性为 main，被导入时 name 为模块名。
+
+  eg：
+
+  ```python
+  #所有可利用工具，全局变量、函数、类
+  
+  if __name__ == "__main__":
+      #测试代码
+  ```
+
+  Python 文件常见格式：
+
+  ```python
+  #导入模块
+  #定义全局变量
+  #定义类
+  #定义函数
+  
+  def main():
+      #main函数的执行代码
+      
+  #根据__name__判断是否执行以下代码
+  
+  if __name__ == "__main__":
+      main();
+  ```
+
+  
+
+### 包
 
 
 
