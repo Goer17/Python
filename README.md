@@ -1060,8 +1060,55 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
         #游戏循环代码
     ```
 
-    
+  - `pygame.event.get()` 捕获用户的具体操作：
 
+    ```python
+    event_list = pygame.even.get(); #捕获事件，返回一个事件列表，若无操作，返回空列表
+    ```
+  
+    > 对用户的操作做出反应：
+  
+    eg：
+  
+    ```python
+    while True:
+        #读取用户的推出键
+        clock.tick(60);
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print("退出游戏...");
+                pygame.quit();
+                
+                exit(); #退出系统
+            
+    ```
+  
+  - 精灵和精灵组：
+  
+    > 对于一般的游戏对象，图像加载、位置变化、绘制图像都需要程序员写代码分别处理，为了简化游戏开发流程，`pygame` 提供了两个类：
+  
+    - `pygame.sprite.Sprite` —— **存储图像数据 image 和 rect 的对象（需要派生子类）**；
+  
+      | 成员            | 说明               |
+      | --------------- | ------------------ |
+      | `image`         | 记录图像数据       |
+      | `rect`          | 记录在屏幕中的位置 |
+      | `update(*args)` | 更新精灵位置       |
+      | `kill()`        | 从所有组中删除     |
+  
+    - `pygame.sprite.Group`；
+  
+      | 成员                       | 说明                                                      |
+      | -------------------------- | --------------------------------------------------------- |
+      | `__init__(self, *sprites)` | 初始构造                                                  |
+      | `add(*sprites)`            | 向组中添加精灵                                            |
+      | `sprites()`                | 返回组中所有精灵的列表                                    |
+      | `update()`                 | 组中所有精灵调用 `update()` 方法                          |
+      | `draw(Surface)`            | 将组中所有精灵的 `image`，绘制到 `Surface` 的 `rect` 位置 |
+  
+      
+  
   
 
 
