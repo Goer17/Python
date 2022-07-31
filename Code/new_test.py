@@ -1,3 +1,7 @@
-import test;
+text = open("test.txt");
 
-print(test.__file__);
+paper = text.read();
+
+print(paper);
+
+text.close();

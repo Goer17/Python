@@ -904,7 +904,7 @@ def sum_nums(*args):
 
 ### Python中的常用函数
 
-#### print() 函数
+#### `print()` 函数
 
 - 在默认情况下，print() 函数在输出内容后会自动在末尾增加换行；
 
@@ -916,7 +916,7 @@ def sum_nums(*args):
 
 
 
-#### eval() 函数
+#### `eval() `函数
 
 - 将字符串当成有效表达式计算并返回计算结果；
 
@@ -934,7 +934,7 @@ def sum_nums(*args):
 
 ### Python中的常用模块
 
-#### 随机数模块random
+#### 随机数模块 `random`
 
 - 导入随机数的模块：
 
@@ -944,7 +944,7 @@ import random;
 
 
 
-- 部分函数介绍：
+- 工具介绍：
 
 ```python
 random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
@@ -952,7 +952,117 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
 
 
 
+#### 游戏设计模块 `pygame`
 
+- 导入 `pygame` 模块：
+
+  ```python
+  import pygame;
+  ```
+
+
+
+- 工具介绍：
+
+  - `init()` 函数：
+
+    > 初始化
+
+    ```python
+    pygame.init(); #初始化
+    ```
+
+  - `quit()` 函数：
+
+    > 退出绘图程序
+
+    ```python
+    pygame.quit(); #退出绘图程序
+    ```
+
+  - `Rect` 类：
+
+    > 用于描述矩形区域
+
+    ```python
+    rect = pygame.Rect(x, y, width, height); #创建对象
+    
+    # rect.size返回(width, height)的元组
+    ```
+
+  - `pygame.display` 模块：
+
+    > 用于创建、管理游戏窗口
+
+    | 方法                        | 说明               |
+    | --------------------------- | ------------------ |
+    | `pygame.display.set_mode()` | 初始化游戏显示窗口 |
+    | `pygame.display.update()`   | 刷新屏幕内容后显示 |
+
+    - `set_mode` 方法详解：
+
+      ```python
+      set_mode(resolution = (0, 0), flags = 0, depth = 0);
+      ```
+
+      > resolution 指定屏幕的宽和高，默认创建窗口大小和屏幕大小一致；
+      >
+      > flags 参数指定屏幕的附加选项，例如是否全屏等等；
+      >
+      > depth 参数表示颜色的位数，默认自动匹配。
+      >
+      > 返回值：返回游戏的窗口。
+
+      eg：
+
+      ```python
+      screen = pygame.display.set_mode((400,700)); #创建游戏窗口
+      ```
+
+  - 利用 `pygame` 绘制图像：
+
+    1. 使用 `pygame.image.load()` 加载图像数据；
+    2. 使用游戏窗口对象，调用 `blit()` 方法将图像绘制到指定位置；
+    3. 调用 `pygame.display.update()` 方法更新整个屏幕的显示。
+
+    eg：
+
+    ```python
+    import pygame
+    
+    pygame.init();
+    
+    screen = pygame.display.set_mode((480,700));
+    
+    bg = pygame.image.load("./images/background.png");
+    
+    screen.blit(bg, (0, 0)); #第二个参数也可以是Rect类
+    
+    pygame.display.update();
+    
+    input("按任意键继续...");
+    
+    pygame.quit();
+    ```
+
+  - `pygame.time.Clock` 游戏时钟类控制循环速度：
+
+    1. 创建一个 `pygame.time.Clock` 时钟类对象；
+    2. 调用时钟类对象的 `tick` 方法。
+
+    eg：
+
+    ```python
+    timer = pygame.time.Clock();
+    
+    while True:
+        clock.tick(frequency); #刷新频率
+        #游戏循环代码
+    ```
+
+    
+
+  
 
 
 # Part B
