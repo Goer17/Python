@@ -625,6 +625,20 @@ tuple_name = (2022, ); #此时tuple_name会被识别为元组类变量
 
   > 注意：**字典的 key 只能使用不可变类型的数据。**
 
+
+
+### 常量定义
+
+> 在 Python 中只需让变量所有字母都为大写即可定义常量，类似于 C/C++ 中的 `#define CONSTANT val`
+
+eg：
+
+```python
+SCREEN_SIZE = (480, 700); #定义常量元组
+```
+
+
+
 ## 基本语法
 
 
@@ -1073,7 +1087,7 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
     ```python
     while True:
         #读取用户的推出键
-        clock.tick(60);
+        timer.tick(60);
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -1088,7 +1102,7 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
   
     > 对于一般的游戏对象，图像加载、位置变化、绘制图像都需要程序员写代码分别处理，为了简化游戏开发流程，`pygame` 提供了两个类：
   
-    - `pygame.sprite.Sprite` —— **存储图像数据 image 和 rect 的对象（需要派生子类）**；
+    - `pygame.sprite.Sprite` —— **存储图像数据 image 和 位置rect 的对象（需要派生子类）**；
   
       | 成员            | 说明               |
       | --------------- | ------------------ |
