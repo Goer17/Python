@@ -737,7 +737,7 @@ else:
       函数注释
       """
   	#函数封装的代码
-  	...
+  	#...
       
       return val; #返回值（可以没有）
   ```
@@ -891,6 +891,12 @@ def sum_nums(*args):
   if __name__ == "__main__":
       main();
   ```
+
+- 推荐模块导入顺序：
+
+  > 1. 官方标准模块
+  > 2. 第三方模块
+  > 3. 应用程序模块
 
   
 
@@ -1050,7 +1056,7 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
     
     bg = pygame.image.load("./images/background.png");
     
-    screen.blit(bg, (0, 0)); #第二个参数也可以是Rect类
+    screen.blit(bg, (0, 0));
     
     pygame.display.update();
     
@@ -1121,7 +1127,18 @@ random.randint(a,b); #生成随机整数n并返回 (a <= n <= b)
       | `update()`                 | 组中所有精灵调用 `update()` 方法                          |
       | `draw(Surface)`            | 将组中所有精灵的 `image`，绘制到 `Surface` 的 `rect` 位置 |
   
-      
+  - 定时器 `pygame.time.set_timer()`：
+  
+    - 所谓定时器，就是每隔一段时间，去执行一些动作；
+  
+      ```python
+      set_timer(eventid, milliseconds);
+      ```
+  
+      - `set_timer` 可以创建一个事件；
+      - 可以在游戏循环的事件监听方法中捕获到该事件；
+      - 第一个参数事件代码需要基于常量 `pygame.USEREVENT` 来指定；
+      - 第二个参数是事件触发间隔的毫秒值。
   
   
 

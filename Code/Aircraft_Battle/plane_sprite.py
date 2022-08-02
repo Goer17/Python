@@ -1,6 +1,10 @@
+import random
 import pygame
 
-class Gamesprite(pygame.sprite.Sprite):
+SCREEN_RECT = pygame.Rect(0, 0, 480, 700);
+CREATE_ENEMY_EVENT = pygame.USEREVENT;
+
+class GameSprite(pygame.sprite.Sprite):
     """飞机大战游戏精灵"""
 
     def __init__(self, image_name, speed = 1):
@@ -17,3 +21,38 @@ class Gamesprite(pygame.sprite.Sprite):
 
         # 在屏幕的垂直方向移动
         self.rect.y += self.speed;
+
+class Background(GameSprite):
+    """游戏背景类"""
+
+    def __init__(self, is_alt = False):
+
+        super().__init__("./images/background.png");
+
+        if is_alt:
+            self.rect.y = -self.rect.height;
+
+    def update(self):
+        
+        super().update();
+
+        if self.rect.y >= SCREEN_RECT.height:
+            self.rect.y = -self.rect.height;
+
+class Enemy(GameSprite):
+    """敌机精灵"""
+
+    def __init__(self):
+
+        super().__init__("./images/enemy1.png");
+
+        self.speed = random.randint(1, 3);
+        self.rect.y = -self.rect.height;
+        self.rect.x = random.randint(0, SCREEN_RECT.width - self.rect.width);
+
+    def update(self):
+
+        super().update();
+        if self.rect.y >= SCREEN_RECT.height:
+            
+            self.kill();

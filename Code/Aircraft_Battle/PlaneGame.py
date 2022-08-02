@@ -1,7 +1,6 @@
 import pygame
 from plane_sprite import *
 
-SCREEN_RECT = pygame.Rect(0, 0, 480, 700);
 FREQUENCY = 60;
 
 class PlaneGame(object):
@@ -10,21 +9,40 @@ class PlaneGame(object):
         print("游戏初始化...");
 
         self.screen = pygame.display.set_mode(SCREEN_RECT.size);
-        self.bg = pygame.image.load("./images/background.png");
         self.timer = pygame.time.Clock();
+        self.__create_sprites();
+        pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000);
+
+    def __create_sprites(self):
+
+        bg_1 = Background();
+        bg_2 = Background(is_alt = True);
+
+        self.back_group = pygame.sprite.Group(bg_1, bg_2);
+        self.enemy_group = pygame.sprite.Group();
 
     def __event_handler(self):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+
                 PlaneGame.__game_over();
-            pass;
+
+            elif event.type == CREATE_ENEMY_EVENT:
+
+                enemy = Enemy();
+                self.enemy_group.add(enemy);
 
     def __check_collide(self):
         pass;
     
     def __update_sprites(self):
-        pass;
+
+        self.back_group.update();
+        self.back_group.draw(self.screen);
+        self.enemy_group.update();
+        self.enemy_group.draw(self.screen);
+
 
     @staticmethod
     def __game_over():
@@ -52,5 +70,4 @@ class PlaneGame(object):
             self.__update_sprites();
 
             # 更新绘图
-            self.screen.blit(self.bg, (0, 0));
             pygame.display.update();
